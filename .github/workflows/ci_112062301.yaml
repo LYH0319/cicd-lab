@@ -35,12 +35,12 @@ jobs:
       - name: Run tests and generate report
         run: |
           mkdir -p reports
-          npm run test -- --reporter=default --reporter=junit --outputFile.junit=reports/test-results.xml
+          npm run test -- --reporter=default --reporter=junit --outputFile.junit=reports/vitest-junit.xml
 
       - name: Publish test report
         uses: dorny/test-reporter@v2
-        if: always() && hashFiles('reports/test-results.xml') != ''
+        if: always()
         with:
           name: Vitest Test Results
-          path: test-results.xml
+          path: reports/vitest-junit.xml
           reporter: java-junit
