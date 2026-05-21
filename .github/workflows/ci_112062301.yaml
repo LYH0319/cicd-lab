@@ -33,11 +33,13 @@ jobs:
         run: npm run format:check
 
       - name: Run tests and generate report
-        run: npm run test -- --reporter=junit --outputFile=test-results.xml
+        run: |
+          mkdir -p reports
+          npm run test -- --reporter=default --reporter=junit --outputFile.junit=reports/test-results.xml
 
       - name: Publish test report
         uses: dorny/test-reporter@v2
-        if: always()
+        if: always() && hashFiles('reports/test-results.xml') != ''
         with:
           name: Vitest Test Results
           path: test-results.xml
