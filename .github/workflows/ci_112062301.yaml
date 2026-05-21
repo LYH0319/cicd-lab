@@ -38,9 +38,9 @@ jobs:
           npm run test -- --reporter=default --reporter=junit --outputFile.junit=reports/vitest-junit.xml
 
       - name: Publish test report
-        uses: dorny/test-reporter@v2
+        uses: actions/upload-artifact@v7
         if: always()
         with:
-          name: Vitest Test Results
-          path: reports/vitest-junit.xml
-          reporter: java-junit
+          name: test-report
+          path: reports/
+          if-no-files-found: error
