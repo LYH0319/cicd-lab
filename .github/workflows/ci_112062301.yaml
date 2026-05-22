@@ -35,12 +35,10 @@ jobs:
       - name: Run tests and generate report
         run: |
           mkdir -p reports
-          npm run test -- --reporter=default --reporter=junit --outputFile.junit=reports/vitest-junit.xml
+          npm run test -- --reporter=default --reporter=junit --outputFile.junit=reports/test-reports.xml
 
       - name: Publish test report
-        uses: actions/upload-artifact@v7
+        uses: EnricoMi/publish-unit-test-result-action@v2
         if: always()
         with:
-          name: test-report
-          path: reports/
-          if-no-files-found: error
+          files: test-reports.xml
