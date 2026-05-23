@@ -1,7 +1,8 @@
 import { buildApp } from './app';
 
 const app = buildApp({ logger: true });
-const port = Number(process.env.PORT || 3000);
+//const port = Number(process.env.PORT || 3000);
+const port: number = "not a number"
 const host = process.env.HOST || '0.0.0.0';
 
 async function start() {
