@@ -1,8 +1,8 @@
 import { buildApp } from './app';
 
 const app = buildApp({ logger: true });
-//const port = Number(process.env.PORT || 3000);
-const port: number = "not a number"
+const port = Number(process.env.PORT || 3000);
+//const port: number = "not a number"
 const host = process.env.HOST || '0.0.0.0';
 
 async function start() {
@@ -11,7 +11,7 @@ async function start() {
     app.log.info(`Server listening at http://${host}:${port}`);
   } catch (error) {
     app.log.error(error);
-    process.exit(1);
+      process.exit(1);
   }
 }
 
